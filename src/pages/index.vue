@@ -1,62 +1,76 @@
 <script setup lang="ts">
-const user = useUserStore()
-const name = $ref(user.savedName)
-
-const router = useRouter()
-const go = () => {
-  if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`)
-}
-
-const { t } = useI18n()
 </script>
 
 <template>
   <div>
     <div text-4xl>
-      <div i-carbon-campsite inline-block />
+      <div class="flex justify-center m-3">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.99988 13.9998C3.49985 11.4998 2.99991 6 7.9999 4.99965C9.9999 4.85024 11.4999 5.50009 13.9999 7.99978L24.9999 19.9998L21.9999 23.9998" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><path d="M18.9999 14C14.9286 14.7071 6.99997 18 7.99997 28C8.49997 31 9.85917 33.9455 12.9999 37V42" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><path d="M29 17C33.2213 16.5704 42.3115 17.439 44 25C44.5628 26.8617 44.0656 32.1577 39 38.0003V42.0003" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><path d="M32.9998 42C32.9998 38.134 29.6002 36 25.9998 36C22.3993 36 18.9998 38.134 18.9998 42" stroke="#ffffff" stroke-width="4" stroke-linecap="round" /></svg>
+      </div>
     </div>
-    <p>
+
+    <p text-3xl>
       <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">
-        Vitesse
+        Sheep Detection Database
       </a>
     </p>
-    <p>
-      <em text-sm opacity-75>{{ t('intro.desc') }}</em>
-    </p>
+    <div py-3 />
+    <div text-xl>
+      2022/7/4
+    </div>
+    <div py-3 />
+    <div class="text-5 flex flex-col m-auto">
+      <div>
+        <span class="align-middle p-x-4 text-5">P1 </span>
+        <span class="align-middle">Duration: 5 Min 31 Sec </span>
+        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
+          Image
+        </button>
+      </div>
 
-    <div py-4 />
+      <div>
+        <span class="align-middle p-x-4 text-5">P2 </span>
+        <span class="align-middle">Duration: 5 Min 16 Sec </span>
+        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
+          Image
+        </button>
+      </div>
 
-    <input
-      id="input"
-      v-model="name"
-      :placeholder="t('intro.whats-your-name')"
-      :aria-label="t('intro.whats-your-name')"
-      type="text"
-      autocomplete="false"
-      p="x4 y2"
-      w="250px"
-      text="center"
-      bg="transparent"
-      border="~ rounded gray-200 dark:gray-700"
-      outline="none active:none"
-      @keydown.enter="go"
-    >
-    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
+      <div>
+        <span class="align-middle p-x-4 text-5">P3 </span>
+        <span class="align-middle">Duration: 4 Min 21 Sec </span>
+        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
+          Image
+        </button>
+      </div>
 
-    <div>
-      <button
-        btn m-3 text-sm
-        :disabled="!name"
-        @click="go"
-      >
-        {{ t('button.go') }}
-      </button>
+      <div>
+        <span class="align-middle p-x-4 text-5">P4 </span>
+        <span class="align-middle">Duration: 3 Min 10 Sec </span>
+        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
+          Image
+        </button>
+      </div>
+
+      <div>
+        <span class="align-middle p-x-4 text-5">P5 </span>
+        <span class="align-middle">Duration: 2 Min 47 Sec </span>
+        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
+          Image
+        </button>
+      </div>
+
+      <div>
+        <button class="text-3 bg-blue-400 rounded rounded-3 p-1 m-5 m-x-3 text-white p-x-3">
+          Get All Data
+        </button>
+      </div>
     </div>
   </div>
+  <div py-1 />
 </template>
 
 <route lang="yaml">
 meta:
-  layout: home
+  layout: default
 </route>
