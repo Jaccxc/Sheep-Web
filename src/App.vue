@@ -2,6 +2,10 @@
 // https://github.com/vueuse/head
 // you can use this to manipulate the document head in any components,
 // they will be rendered correctly in the html results with vite-ssg
+import { useGoatStore } from './store/goatAPI'
+
+const props = useGoatStore()
+
 useHead({
   title: 'Vitesse',
   meta: [
@@ -22,6 +26,7 @@ useHead({
 </script>
 
 <template>
+  <Loader v-if="props.loading" />
   <div class="head">
     <div class="button1 text-white" style="padding-left:30px">
       <RouterLink class="rounded" to="/about" style="height: 40px; width: 120px; float:right; margin: 7.5px; margin-left: 30px;">

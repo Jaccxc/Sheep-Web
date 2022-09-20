@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useGoatStore } from '~/store/goatAPI'
+const goatStore = useGoatStore()
+const { getTopNfromDate, buttonTest } = useGoatStore()
+const { APIdata } = storeToRefs(goatStore)
+const dateToRequest = '2022/09/05'
+const zero = '0'
+
+getTopNfromDate()
 </script>
 
 <template>
@@ -11,55 +20,61 @@
 
     <p text-3xl>
       <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">
-        Sheep Detection Database
+        Goat Detection and Tracking Database
       </a>
     </p>
     <div py-3 />
     <div text-xl>
-      2022/7/4
+      {{ dateToRequest }}
     </div>
+
     <div py-3 />
-    <div class="text-5 flex flex-col m-auto">
-      <div>
-        <span class="align-middle p-x-4 text-5">P1 </span>
-        <span class="align-middle">Duration: 5 Min 31 Sec </span>
-        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
-          Image
-        </button>
+    <div class="text-5">
+      <div class="flex flex-col items-center">
+        <ul>
+          <div>
+            <li v-for="(entity, index) in APIdata" :key="index">
+              <div class="w-700px flex flex-row justify-center my-6 bg-white rounded-2 op-85 drop-shadow shadow-xl text-black-g text-op-50">
+                <div class="table">
+                  <div class="w-50px text-left table-cell v-middle">
+                    P{{ index }}.
+                  </div>
+                </div>
+                <div class="table">
+                  <div class="w-140px text-left table-cell v-middle">
+                    Goat-ID : {{ entity.ID }}
+                  </div>
+                </div>
+                <div class="table">
+                  <div class="w-100px text-left table-cell v-middle">
+                    Duration :
+                  </div>
+                </div>
+                <div class="text-right flex flex-row">
+                  <div class="table">
+                    <div v-if="entity.DURATION.hour !== zero" class="w-70px table-cell v-middle">
+                      {{ entity.DURATION.hour }} hour.&nbsp;
+                    </div>
+                  </div>
+                  <div class="table">
+                    <div class="text-left w-155px table-cell v-middle">
+                      {{ entity.DURATION.minute }} min. {{ entity.DURATION.second }} sec.
+                    </div>
+                  </div>
+                </div>
+                <div class="table">
+                  <div class="w-130px text-left table-cell v-middle">
+                    Img ID : {{ entity.IMG_ID }}
+                  </div>
+                </div>
+                <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 text-black p-x-3" @click="buttonTest(parseInt(entity.IMG_ID))">
+                  Image
+                </button>
+              </div>
+            </li>
+          </div>
+        </ul>
       </div>
-
-      <div>
-        <span class="align-middle p-x-4 text-5">P2 </span>
-        <span class="align-middle">Duration: 5 Min 16 Sec </span>
-        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
-          Image
-        </button>
-      </div>
-
-      <div>
-        <span class="align-middle p-x-4 text-5">P3 </span>
-        <span class="align-middle">Duration: 4 Min 21 Sec </span>
-        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
-          Image
-        </button>
-      </div>
-
-      <div>
-        <span class="align-middle p-x-4 text-5">P4 </span>
-        <span class="align-middle">Duration: 3 Min 10 Sec </span>
-        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
-          Image
-        </button>
-      </div>
-
-      <div>
-        <span class="align-middle p-x-4 text-5">P5 </span>
-        <span class="align-middle">Duration: 2 Min 47 Sec </span>
-        <button class="text-3 bg-blue-200 rounded rounded-3 p-1 m-1 m-x-3 text-black p-x-3">
-          Image
-        </button>
-      </div>
-
       <div>
         <button class="text-3 bg-blue-400 rounded rounded-3 p-1 m-5 m-x-3 text-white p-x-3">
           Get All Data
@@ -70,7 +85,8 @@
   <div py-1 />
 </template>
 
-<route lang="yaml">
+      <route lang="yaml">
 meta:
   layout: default
-</route>
+      </route>
+

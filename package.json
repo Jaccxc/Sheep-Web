@@ -15,12 +15,14 @@
   "dependencies": {
     "@vueuse/core": "^8.7.5",
     "@vueuse/head": "^0.7.6",
+    "axios": "^0.27.2",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
+    "postcss": "^8.4.16",
     "prism-theme-vars": "^0.2.3",
     "vue": "^3.2.37",
     "vue-demi": "^0.13.1",
-    "vue-i18n": "^9.1.10",
+    "vue-i18n": "9.3.0-beta.3",
     "vue-router": "^4.0.16"
   },
   "devDependencies": {
