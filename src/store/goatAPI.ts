@@ -31,9 +31,9 @@ export const useGoatStore = defineStore('user', () => {
   }
 
   function getTopNfromDate() {
-    const topN = 40
+    const topN = 20
     const dateToRequest = '2022/09/05'
-    const url = 'http://localhost:80/getTopN'
+    const url = 'http://sheeped01.ddns.net:5000/getTopN'
     setLoader(true)
     axios.get(url, { params: { N: topN, date: dateToRequest } }).then((res) => {
       APIdata.value = res.data
